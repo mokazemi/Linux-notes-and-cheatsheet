@@ -138,69 +138,11 @@ add this to `~/.config/fontconfig/conf.d/99-noto-mono-color-emoji.conf`
     </prefer>
   </alias>
 </fontconfig>
-
-
 ```
 
 #### Set Persian fonts
-Set Vazirmatn fonts for persian text.
-
-```
-<?xml version='1.0'?>
-<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
-
-<fontconfig>
-
-<!-- Fallback fonts preference order -->
-<!-- Source: https://wiki.archlinux.org/title/Font_configuration/Examples -->
- <alias>
-  <family>sans-serif</family>
-  <prefer>
-   <family>Noto Sans</family>
-   <family>Vazirmatn</family>
-   <family>DejaVu Sans</family>
-  </prefer>
- </alias>
-
- <alias>
-  <family>serif</family>
-  <prefer>
-   <family>Noto Serif</family>
-   <family>Vazirmatn</family>
-   <family>DejaVu Serif</family>
-  </prefer>
- </alias>
-
-<!-- Default font for the Persian language -->
-<!-- Source: https://wiki.archlinux.org/title/Font_configuration/Examples -->
-<!-- Only sans-serif and serif are selected, since Vazirmatn is not monospace-->
- <match>
-  <test compare="contains" name="lang">
-   <string>fa</string>
-  </test>
-  <test name="family">
-    <string>sans-serif</string>
-  </test>
-  <edit mode="prepend" name="family">
-   <string>Vazirmatn</string>
-  </edit>
- </match>
-
-  <match>
-  <test compare="contains" name="lang">
-   <string>fa</string>
-  </test>
-  <test name="family">
-    <string>serif</string>
-  </test>
-  <edit mode="prepend" name="family">
-   <string>Vazirmatn</string>
-  </edit>
- </match>
-
-</fontconfig>
-
-```
+Here's the complete config with details:
+[Set Vazirmatn font globally for Persian (Farsi) text](./Set-Persian-Font-Globally.md)
 
 
 ### Fix Hard Disk standby/spindown
@@ -229,7 +171,7 @@ StandbyTimeout=241
 
 #### Drivers
 For intel graphics, `mesa` package should be installed. 
-And I'll remove `xf86-video-intel.
+And I'll remove `xf86-video-intel`.
 Also install `Vulkan-intel` for more support. [Source](https://wiki.archlinux.org/title/intel_graphics)
 
 My laptop has two GPU (one Intel UHD Graphics 620 and one NVIDIA GM108M). It looks NVIDIA is not enable by default when only nouveau driver is installed. But let's try to turn it of. Since there wasn't any option in BIOS, so I used [this](https://wiki.archlinux.org/title/Hybrid_graphics#Using_udev_rules) modprobe and udev rules to prevent it from being active. 
@@ -241,7 +183,13 @@ This "VAAPI" can be verified in multiple ways. I used `vainfo` to get informatio
 
 
 ### DNS encryption
-https://wiki.ubuntu.ir/wiki/DNScrypt
+https://wiki.archlinux.org/title/Dnscrypt-proxy
+
+Note: We can set DNS in `/etc/resolv.conf` but it's not presistant. It can be modified by [NetworkManager](https://wiki.archlinux.org/title/NetworkManager#/etc/resolv.conf) or [openresolv](https://wiki.archlinux.org/title/Openresolv). To make sure, we'll prevent both from editing `resolv.conf` file.
+
+For example [here](https://wiki.archlinux.org/title/NetworkManager#Unmanaged_/etc/resolv.conf) is a way to disable NetworkManager changing DNS.
+
+Also add `resolvconf=NO` to the `/etc/resolvconf.conf`.
 
 ### Firefox tweaks
 
