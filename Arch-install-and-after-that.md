@@ -8,15 +8,15 @@ At the bottom, there's also a part for regular tasks and maintenance that's need
 - [x] Linux LTS kernel
 - [x] Mirrors
 - [x] Bluetooth
-- [ ] Graphic drivers
-	- [ ] Drivers installation
-	- [ ] Video Acceleration
-	- [ ] Apps hardware acceleration configs
+- [x] Graphic drivers
+	- [x] Drivers installation
+	- [x] Video Acceleration
+	- [x] Apps hardware acceleration configs
 - [ ] Firefox tweaks
 - [x] Fonts and readability
-- [ ] Wayland
-	- [ ] Install plasma wayland
-	- [ ] Set environmental variables for apps
+- [x] Wayland
+	- [x] Install plasma wayland
+	- [x] Set environmental variables for apps
 - [ ] Dolphin and KIO
 - [ ] warning: directory permissions differ on /etc/bluetooth/filesystem: 755 package: 555
 
@@ -140,6 +140,8 @@ add this to `~/.config/fontconfig/conf.d/99-noto-mono-color-emoji.conf`
 </fontconfig>
 ```
 
+[Source](https://community.kde.org/Distributions/Packaging_Recommendations#Fontconfig_configuration)
+
 #### Set Persian fonts
 Here's the complete config with details:
 [Set Vazirmatn font globally for Persian (Farsi) text](./Set-Persian-Font-Globally.md)
@@ -181,6 +183,10 @@ install `intel-media-driver` for newer Intel GPUs. it's iHD driver. There's also
 
 This "VAAPI" can be verified in multiple ways. I used `vainfo` to get information about all capabilities and also `mpv` flag `--hwdec=auto` to play a video. It seems working!
 
+Each application (FFmpeg, VLC, mpv, ...) has it's own way of enabling hardware acceleration. 
+
+[Source](https://wiki.archlinux.org/title/Hardware_video_acceleration)
+
 
 ### DNS encryption
 https://wiki.archlinux.org/title/Dnscrypt-proxy
@@ -202,7 +208,17 @@ set `media.ffmpeg.vaapi.enabled` to `True` in `about:config`
 **Store Session Interval:** 
 Set `browser.sessionstore.interval` to `600000` in `about:config`
 
+**KDE Integration:**
+Install `xdg-desktop-portal` and `xdg-desktop-portal-kde`.
+Then Set `widget.use-xdg-desktop-portal.file-picker` from 2 to 1.
+
+NOTE: Arch wiki also says `widget.use-xdg-desktop-portal.mime-handle` to 1 but it make Forefox ask every time if you want to set it as default browser. So I didn't changed it. 
+
+[Source 1](wiki.archlinux.org/title/firefox), [Source 1](https://wiki.archlinux.org/title/Firefox/Tweaks) 
+
 ## Things to Install
+
+_TO BE COMPLETED._
 
 **KDE Plasma desktop + integrations**\:
 
