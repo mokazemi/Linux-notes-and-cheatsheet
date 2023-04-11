@@ -19,6 +19,7 @@ At the bottom, there's also a part for regular tasks and maintenance that's need
 	- [x] Set environmental variables for apps
 - [ ] Dolphin and KIO
 - [ ] warning: directory permissions differ on /etc/bluetooth/filesystem: 755 package: 555
+- [ ] Add Kernel parameter resume variable
 
 ## Installation and Configs
 
@@ -215,6 +216,14 @@ Then Set `widget.use-xdg-desktop-portal.file-picker` from 2 to 1.
 NOTE: Arch wiki also says `widget.use-xdg-desktop-portal.mime-handle` to 1 but it make Forefox ask every time if you want to set it as default browser. So I didn't changed it. 
 
 [Source 1](wiki.archlinux.org/title/firefox), [Source 1](https://wiki.archlinux.org/title/Firefox/Tweaks) 
+
+### Change from mkinitcpio to Dracut
+
+New EndeavourOS release and many other distros uses Dracut (Which I'm not sure yet what it is!). But anyways, EOS has a guide how to do it, which is [here](https://discovery.endeavouros.com/installation/dracut/2022/12/). I did it since my EOS installation is not new.
+
+### Add resume variable 
+Draft (not done yet):
+https://wiki.archlinux.org/title/kernel_parameters
 
 ## Things to Install
 

@@ -113,6 +113,22 @@ https://rastikerdar.github.io/vazirmatn/fa
 
 تمام!
 
+**پ.ن:** با دستور زیر می‌تونید بررسی کنید که قلم‌ها به درستی تنظیم شده. برای مثال خروجی‌های زیر رو ببینید:
+
+```
+$ fc-match serif:lang=fa
+Vazirmatn-Regular.ttf: "Vazirmatn" "Regular"
+
+$ fc-match sans-serif:lang=fa
+Vazirmatn-Regular.ttf: "Vazirmatn" "Regular"
+
+$ fc-match serif:lang=en
+NotoSerif-Regular.ttf: "Noto Serif" "Regular"
+
+$ fc-match sans-serif:lang=en
+NotoSans-Regular.ttf: "Noto Sans" "Regular"
+```
+
 
 **البته چندتا توضیح کوچیک:** 
 
