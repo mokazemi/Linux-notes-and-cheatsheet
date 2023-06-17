@@ -4,7 +4,7 @@ I finally could find a proper minimal config to change Farsi font systemwide (to
 
 So everywhere on the system (Desktop, browser, ...) Vazirmatn font is used (unless the website/application explicitly set another font that supports Farsi)
 
-<div dir="auto">
+<div dir="auto" align="right">
 
 # تنظیم قلمِ وزیر برای زبان فارسی در کل سیستم
 بلاخره تونستم یه کانفیگ برای تنظیم فونت فارسی انجام بدم؛ طوری که فقط متن فارسی تغییر بکنه و بقیه فونت‌های سیستم دست‌نخورده باقی بمونه.
@@ -18,7 +18,7 @@ So everywhere on the system (Desktop, browser, ...) Vazirmatn font is used (unle
 https://rastikerdar.github.io/vazirmatn/fa
 
 بعد، فایل کانفیگ رو با اسمی که گفته شده داخل مسیر زیر ایجاد کنید:
-<div dir="ltr">
+<div dir="ltr" align="left">
 
  ```~/.config/fontconfig/conf.d/91-vazirmatn-farsi.conf```
 
@@ -26,7 +26,7 @@ https://rastikerdar.github.io/vazirmatn/fa
  (اون شماره که اول اسمش اومده مهمه و اولویت کانفیگ رو مشخص می‌کنه)
  
  سپس داخل فایل، متن زیر رو قرار بدید:
-<div dir="ltr">
+<div dir="ltr" align="left">
 
 ```
 <?xml version='1.0'?>
@@ -113,7 +113,7 @@ https://rastikerdar.github.io/vazirmatn/fa
 </div>
 
 **نکته**: ممکنه قبلا از داخل تنظیمات میزکار، فونت رو تنظیم کرده باشید. در این صورت ممکنه بجای این کانفیگ بالا، اون رو اثر بده (این نکته رو بررسی نکردم. اگر کسی امتحانش کرده ممنون می‌شم بگه). این میزکار فونت‌ها رو داخل پرونده‌های زیر تعیین می‌کنه:
-<div dir="ltr">
+<div dir="ltr" align="left">
 
 ```
 ~/.fonts.conf
@@ -124,7 +124,7 @@ https://rastikerdar.github.io/vazirmatn/fa
 پیشنهاد می‌کنم این فایل‌ها رو پاک کنید (البته قبلش ازشون پشتیبان بگیرید چون ممکنه داخلش تنظیمات دیگه هم باشه). احتمالا میزکار دوباره ایجادشون کنه. اگر هم از ساختارشون سر در میارید می‌تونید بازشون کنید و تگ‌هایی که مربوط به تعیین فونته رو حذف کنید.
 
 **در نهایت** بعد از همه کارهای بالا، دستور زیر رو اجرا کنید:
-<div dir="ltr">
+<div dir="ltr" align="left">
 
 ```$ fc-cache -fv```
 
@@ -134,7 +134,7 @@ https://rastikerdar.github.io/vazirmatn/fa
 **تمام!**
 
 **پ.ن:** با دستور زیر می‌تونید بررسی کنید که قلم‌ها به درستی تنظیم شده. برای مثال خروجی‌های زیر رو ببینید:
-<div dir="ltr">
+<div dir="ltr" align="left">
 
 ```
 $ fc-match serif:lang=fa
