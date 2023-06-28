@@ -13,6 +13,6 @@ I intented to write a more complex cheatsheet here, But I found a lot of good an
 ## Useful resources:
 
 - https://regex101.com/ (to test and practice)
-- https://regexlearn.com/cheatshee
+- https://regexlearn.com/
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet
 
