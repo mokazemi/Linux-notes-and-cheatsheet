@@ -198,6 +198,33 @@ For example [here](https://wiki.archlinux.org/title/NetworkManager#Unmanaged_/et
 
 Also add `resolvconf=NO` to the `/etc/resolvconf.conf`.
 
+### Setting Locales
+To set measurement units and papersize to metric and standard units.
+
+First add or uncomment `en_AU.UTF-8 UTF-8` in /etc/locale.gen and then run `sudo locale-gen` to enable en_AU locale on the system (Which uses metric units). Run `locale -a` to make sure it's enabled.
+
+Now edit this file and set variables to desired ones:
+
+```
+/etc/locale.conf
+---
+
+LANG=en_US.UTF-8
+LC_ADDRESS=en_US.UTF-8
+LC_IDENTIFICATION=en_US.UTF-8
+LC_MEASUREMENT=en_AU.UTF-8
+LC_MONETARY=en_US.UTF-8
+LC_NAME=en_US.UTF-8
+LC_NUMERIC=en_US.UTF-8
+LC_PAPER=en_AU.UTF-8
+LC_TELEPHONE=en_AU.UTF-8
+LC_TIME=en_AU.UTF-8
+```
+
+Check it's set correctly by running `locale` command. (Also delete `~/.config/plasma-localerc` in Plasma desktop).
+Then rebooting the system should apply the changes.
+([Source](https://wiki.archlinux.org/title/Locale))
+
 ### Firefox tweaks
 
 **Native Wayland:**
