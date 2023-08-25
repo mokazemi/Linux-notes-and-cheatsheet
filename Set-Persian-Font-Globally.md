@@ -13,9 +13,10 @@ So everywhere on the system (Desktop, browser, ...) Vazirmatn font is used (unle
 
 
 ## مراحل
-اول از همه، آخرین نسخه فونت وزیرمتن رو به طور کامل نصب کنید!
+اول از همه، آخرین نسخه فونت وزیرمتن و وزیرکد رو به طور کامل نصب کنید!
 
-https://rastikerdar.github.io/vazirmatn/fa
+* https://rastikerdar.github.io/vazirmatn/fa
+* https://rastikerdar.github.io/vazir-code-font/
 
 بعد، فایل کانفیگ رو با اسمی که گفته شده داخل مسیر زیر ایجاد کنید:
 <div dir="ltr" align="left">
@@ -30,18 +31,16 @@ https://rastikerdar.github.io/vazirmatn/fa
 
 ```
 <?xml version='1.0'?>
-  <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
-
-  <fontconfig>
+<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+<fontconfig>
   <!-- Only "sans-serif" and "serif" are selected and set, since Vazirmatn don't have "monospace" font-->
-
   <!-- Fallback fonts preference order -->
   <!-- Source: https://wiki.archlinux.org/title/Font_configuration/Examples -->
   <alias>
     <family>sans-serif</family>
     <prefer>
-      <family>Noto Sans</family>
       <family>Vazirmatn</family>
+      <family>Noto Sans</family>
       <family>DejaVu Sans</family>
     </prefer>
   </alias>
@@ -49,61 +48,62 @@ https://rastikerdar.github.io/vazirmatn/fa
   <alias>
     <family>serif</family>
     <prefer>
-      <family>Noto Serif</family>
       <family>Vazirmatn</family>
+      <family>Noto Serif</family>
       <family>DejaVu Serif</family>
     </prefer>
   </alias>
 
+  <alias>
+    <family>monospace</family>
+    <prefer>
+      <family>Vazir Code</family>
+      <family>Noto Sans Mono</family>
+    </prefer>
+  </alias>
   <!-- Default font for the Persian language -->
   <!-- Source: https://wiki.archlinux.org/title/Font_configuration/Examples -->
   <match>
-    <test compare="contains" name="lang">
-      <string>fa</string>
-    </test>
-    <test name="family">
-      <string>sans-serif</string>
-    </test>
-    <edit mode="prepend" name="family">
-      <string>Vazirmatn</string>
-    </edit>
+    <test compare="contains" name="lang"><string>fa</string></test>
+    <test name="family"><string>sans-serif</string></test>
+    <edit mode="prepend" name="family" binding="same"><string>Vazirmatn</string></edit>
+    <edit mode="append" name="family" binding="same"><string>Noto Sans</string></edit>
   </match>
 
-    <match>
-    <test compare="contains" name="lang">
-      <string>fa</string>
-    </test>
-    <test name="family">
-      <string>serif</string>
-    </test>
-    <edit mode="prepend" name="family">
-      <string>Vazirmatn</string>
-    </edit>
+  <match>
+    <test compare="contains" name="lang"><string>fa</string></test>
+    <test name="family"><string>serif</string></test>
+    <edit mode="prepend" name="family" binding="same"><string>Vazirmatn</string></edit>
+    <edit mode="append" name="family" binding="same"><string>Noto Serif</string></edit>
+  </match>
+
+  <match>
+    <test compare="contains" name="lang"><string>fa</string></test>
+    <test name="family"><string>serif</string></test>
+    <edit mode="prepend" name="family" binding="same"><string>Vazir Code</string></edit>
+    <edit mode="append" name="family" binding="same"><string>Noto Sans Mono</string></edit>
   </match>
 
   <!-- Do the same for Arabic -->
-  <match>
-    <test compare="contains" name="lang">
-      <string>ar</string>
-    </test>
-    <test name="family">
-      <string>sans-serif</string>
-    </test>
-    <edit mode="prepend" name="family">
-      <string>Vazirmatn</string>
-    </edit>
+    <match>
+    <test compare="contains" name="lang"><string>ar</string></test>
+    <test name="family"><string>sans-serif</string></test>
+    <edit mode="prepend" name="family" binding="same"><string>Vazirmatn</string></edit>
+    <edit mode="append" name="family" binding="same"><string>Noto Sans</string></edit>
   </match>
 
-    <match>
-    <test compare="contains" name="lang">
-      <string>ar</string>
-    </test>
-    <test name="family">
-      <string>serif</string>
-    </test>
-    <edit mode="prepend" name="family">
-      <string>Vazirmatn</string>
-    </edit>
+  <match>
+    <test compare="contains" name="lang"><string>ar</string></test>
+    <test name="family"><string>serif</string></test>
+    <edit mode="prepend" name="family" binding="same"><string>Vazirmatn</string></edit>
+    <edit mode="append" name="family" binding="same"><string>Noto Serif</string></edit>
+  </match>
+
+  <match>
+    <test compare="contains" name="lang"><string>fa</string></test>
+    <test name="family"><string>serif</string></test>
+    <edit mode="prepend" name="family" binding="same"><string>Vazir Code</string></edit>
+    <edit mode="append" name="family" binding="same"><string>Noto Sans Mono</string></edit>
   </match>
 
 </fontconfig>
@@ -157,6 +157,8 @@ NotoSans-Regular.ttf: "Noto Sans" "Regular"
 ۱. من برای زبان‌های غیر فارسی، فونت Noto رو برای [تایپ‌فیس‌های](https://fa.wikipedia.org/wiki/%D8%AA%D8%A7%DB%8C%D9%BE%E2%80%8C%D9%81%DB%8C%D8%B3) Serif و Sans-serif تنظیم کردم. می‌تونید از فونت دیگه‌ای هم استفاده کنید.
 
 ۲. اگه توجه کنید، کانفیگ بالا فونت عربی رو هم تنظیم می‌کنه، چون وزیرمتن عربی رو هم پشتیبانی می‌کنه.
+
+۳. از قلم وزیرکد هم برای نمایش متن‌های فارسی monospace استفاده کردم (مثل کدها و ...) تا زیباتر دیده بشن.
 
 ۳. [در این صفحه](https://wiki.archlinux.org/title/Font_configuration) و [این صفحه](https://wiki.archlinux.org/title/Font_configuration/Examples#Default_fonts) می‌تونید توضیحات بیشتر و مثال‌های بیشتری پیدا کنید.
 </div>
