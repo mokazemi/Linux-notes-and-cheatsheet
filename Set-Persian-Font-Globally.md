@@ -15,8 +15,13 @@ So everywhere on the system (Desktop, browser, ...) Vazirmatn font is used (unle
 ## مراحل
 اول از همه، آخرین نسخه فونت وزیرمتن و وزیرکد رو به طور کامل نصب کنید!
 
+<div dir="ltr" align="left">
+
 * https://rastikerdar.github.io/vazirmatn/fa
+
 * https://rastikerdar.github.io/vazir-code-font/
+
+</div>
 
 بعد، فایل کانفیگ رو با اسمی که گفته شده داخل مسیر زیر ایجاد کنید:
 <div dir="ltr" align="left">
