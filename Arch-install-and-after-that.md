@@ -248,9 +248,14 @@ NOTE: Arch wiki also says `widget.use-xdg-desktop-portal.mime-handle` to 1 but i
 
 New EndeavourOS release and many other distros uses Dracut (Which I'm not sure yet what it is!). But anyways, EOS has a guide how to do it, which is [here](https://discovery.endeavouros.com/installation/dracut/2022/12/). I did it since my EOS installation is not new.
 
-### Add resume variable 
-Draft (not done yet):
-https://wiki.archlinux.org/title/kernel_parameters
+### Hibernation
+Kernel module should be load (this is the guide for Draucut):
+https://wiki.archlinux.org/title/Dracut#Hibernation
+
+In my case, it worked just by loading module and having enough swap, without doing anything else.
+
+(Also [this](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation) in case of mkinitcpio instead)
+
 
 ## Things to Install
 
