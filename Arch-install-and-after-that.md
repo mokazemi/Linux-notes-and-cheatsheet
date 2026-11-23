@@ -18,8 +18,8 @@ At the bottom, there's also a part for regular tasks and maintenance that's need
 	- [x] Install plasma wayland
 	- [x] Set environmental variables for apps
 - [ ] Dolphin and KIO
-- [ ] warning: directory permissions differ on /etc/bluetooth/filesystem: 755 package: 555
 - [ ] Add Kernel parameter resume variable
+- [x] Backup dotfiles
 
 ## Installation and Configs
 
@@ -63,7 +63,8 @@ There's usually a problem if you mount a folder with bind option. They will be s
 Enable `fstrim` timer on SSD. Also don't use discard option in `/etc/fstab` in this case.
 
 ```
-systemctl enable fstrim.service 
+systemctl enable fstrim.timer
+systemctl start fstrim.timer
 ```
 
 ### Kernels
@@ -198,6 +199,46 @@ For example [here](https://wiki.archlinux.org/title/NetworkManager#Unmanaged_/et
 
 Also add `resolvconf=NO` to the `/etc/resolvconf.conf`.
 
+**Update: ** The previous approach had issues when using VPNs (In my case, university VPN to access some journals). Here's a better method:
+
+1. Make sure `dnscrypt-proxy` and `systemd-resolvconf` are installed and enabled.
+2. Make `systemd-resolved` handle `resolv.conf` by: 
+
+	```
+	sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+	```
+
+3. Config `systemd-resolved` like this:
+
+	```
+	$ cat /etc/systemd/resolved.conf.d/dnscrypt-dns.conf 
+	[Resolve]
+	DNS=::1 127.0.0.1
+	FallbackDNS=
+	DNSStubListener=yes
+	# Cache=no  # Default is disabled for local adresses based on the man page
+	CacheFromLocalhost=no
+	Domains=~.
+
+	```
+
+4. Set `NetworkManager` to use `systemd-resolved`:
+	```
+	cat /etc/NetworkManager/conf.d/dns.conf 
+	[main]
+	dns=systemd-resolved
+	```
+
+5. If using VPN connection (Like PPTP), don't forget to add internal domains by setting "search domains" or something like this in the VPN config settings.
+
+6. Finally, I ended up making `resolv.conf` immutable (`chattr +i`) to make sure DNS is applied and nothing overwrites the file:
+
+	```
+	sudo chattr +i /etc/resolv.conf
+	```
+
+	If you need to edit it again, unlock it with `sudo chattr -i /etc/resolv.conf`.
+
 ### Setting Locales
 To set measurement units and papersize to metric and standard units.
 
@@ -256,6 +297,23 @@ In my case, it worked just by loading module and having enough swap, without doi
 
 (Also [this](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Hibernation) in case of mkinitcpio instead)
 
+### Add resume variable 
+
+Draft (not done yet):
+
+https://wiki.archlinux.org/title/kernel_parameters
+
+### Enable Zram or Zswap
+
+Both [Zram](https://wiki.archlinux.org/title/Zram) and [Zswap](https://wiki.archlinux.org/title/Zswap) looks similar but different in how they work. Both of them compresses some part of the data in RAM. But for example, Zswap needs also a swap space to be available. Enable one of them, but note that **ONLY ONE** of them should be enabled.
+
+### `aursh`
+
+I don't use `rua` anymore. I wrote my own minimal AUR helper script instead: `aursh`, which lives in my [dotfiles repo](https://codeberg.org/mokazemi/dotfiles) (managed by [yadm](https://yadm.io)) at `bin/aursh`. It builds packages with `git` + `makepkg` and installs them only after reviewing and confirming. It's only used to install and update AUR packages, so it should be used along with `pacman` (Which is what I prefer).
+
+### Enable user repositories
+
+I enabled [chaotic-aur](https://wiki.archlinux.org/title/Unofficial_user_repositories#chaotic-aur) repository, since it looks promissiong and secure. 
 
 ## Things to Install
 
@@ -268,7 +326,7 @@ _TO BE COMPLETED._
 * `xdg-desktop-portal` and `xdg-desktop-portal-kde` and `kdialog`
 * `kaccounts-providers`
 * `noto-fonts-emoji`
-* `ffmpegthumbs` and `qt5-imageformats` and `kimageformats` and `kdegraphics-thumbnailers`
+* `ffmpegthumbs` and `qt6-imageformats` and `kimageformats` and `kdegraphics-thumbnailers`
 
 **Security**
 

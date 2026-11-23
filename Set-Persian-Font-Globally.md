@@ -1,4 +1,5 @@
 # Set Vazirmatn font globally for Persian (Farsi) text
+<!-- TODO: Needs to be modified since the config is changed and the old one doesn't work anymore. -->
 
 I finally could find a proper minimal config to change Farsi font systemwide (to something good, like **[Vazirmant](https://rastikerdar.github.io/vazirmatn/fa)**) and keep other fonts untouched. 
 
